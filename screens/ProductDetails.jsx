@@ -74,7 +74,7 @@ const ProductDetails = ({ route, navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+       
     );
 };
 
