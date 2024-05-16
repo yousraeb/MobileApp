@@ -17,6 +17,12 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, 'Password must be at least 8 characters')
     .required('Required'),
+  contactPerson: Yup.string()
+    .required('Required'),
+  phoneNumber: Yup.string()
+    .required('Required'),
+  address: Yup.string()
+    .required('Required'),
 });
 
 const SignupPage = ({ navigation }) => {
@@ -33,7 +39,10 @@ const SignupPage = ({ navigation }) => {
         body: JSON.stringify({
           name: values.name,
           email: values.email,
-          password: values.password
+          password: values.password,
+          contactPerson: values.contactPerson,
+          phoneNumber: values.phoneNumber,
+          address: values.address
         }),
       });
 
@@ -75,14 +84,14 @@ const SignupPage = ({ navigation }) => {
           />
           <Text style={styles.title}>Create an Account</Text>
           <Formik
-            initialValues={{ name: '', email: '', password: '' }}
+            initialValues={{ name: '', email: '', password: '', contactPerson: '', phoneNumber: '', address: '' }}
             validationSchema={validationSchema}
             onSubmit={signUp}
           >
             {({ handleChange, handleBlur, touched, handleSubmit, values, errors, isValid, setFieldTouched }) => (
               <View>
                 <View style={styles.wrapper}>
-                  <Text style={styles.label}>Full Name</Text>
+                  <Text style={styles.label}>Name</Text>
                   <View style={styles.inputWrapper(touched.name ? COLORS.secondary : COLORS.offwhite)}>
                     <MaterialCommunityIcons
                       name='account-outline'
@@ -91,7 +100,7 @@ const SignupPage = ({ navigation }) => {
                       style={styles.iconStyle}
                     />
                     <TextInput
-                      placeholder="Enter full name"
+                      placeholder="Enter name"
                       onFocus={() => { setFieldTouched('name') }}
                       onBlur={() => { setFieldTouched('name', '') }}
                       value={values.name}
@@ -158,6 +167,81 @@ const SignupPage = ({ navigation }) => {
                   </View>
                   {touched.password && errors.password && (
                     <Text style={styles.errorMessage}>{errors.password}</Text>
+                  )}
+                </View>
+                <View style={styles.wrapper}>
+                  <Text style={styles.label}>Contact Person</Text>
+                  <View style={styles.inputWrapper(touched.contactPerson ? COLORS.secondary : COLORS.offwhite)}>
+                    <MaterialCommunityIcons
+                      name='account-outline'
+                      size={20}
+                      color={COLORS.gray}
+                      style={styles.iconStyle}
+                    />
+                    <TextInput
+                      placeholder="Enter contact person"
+                      onFocus={() => { setFieldTouched('contactPerson') }}
+                      onBlur={() => { setFieldTouched('contactPerson', '') }}
+                      value={values.contactPerson}
+                      onChangeText={handleChange('contactPerson')}
+                      autoCapitalize="words"
+                      autoCorrect={false}
+                      style={{ flex: 1 }}
+                    />
+                  </View>
+                  {touched.contactPerson && errors.contactPerson && (
+                    <Text style={styles.errorMessage}>{errors.contactPerson}</Text>
+                  )}
+                </View>
+                <View style={styles.wrapper}>
+                  <Text style={styles.label}>Phone Number</Text>
+                  <View style={styles.inputWrapper(touched.phoneNumber ? COLORS.secondary : COLORS.offwhite)}>
+                    <MaterialCommunityIcons
+                      name='phone-outline'
+                      size={20}
+                      color={COLORS.gray}
+                      style={styles.iconStyle}
+                    />
+                    <TextInput
+                      placeholder="Enter phone number"
+                      onFocus={() => { setFieldTouched('phoneNumber') }}
+                      onBlur={() => { setFieldTouched('phoneNumber', '') }}
+                      value={values.phoneNumber}
+                      onChangeText={handleChange('phoneNumber')}
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      keyboardType="phone-pad"
+                      style={{ flex: 1 }}
+                    />
+                  </View>
+                  {touched.phoneNumber && errors.phoneNumber && (
+                    <Text style={styles.errorMessage}>{errors.phoneNumber}</Text>
+                  )}
+                </View>
+                <View style={styles.wrapper}>
+                  <Text style={styles.label}>Address</Text>
+                  <View style={styles.inputWrapper(touched.address ? COLORS.secondary : COLORS.offwhite)}>
+                    <MaterialCommunityIcons
+                      name='map-marker-outline'
+                      size={20}
+                      color={COLORS.gray}
+                      style={styles.iconStyle}
+                    />
+                    <TextInput
+                      placeholder="Enter address"
+                      onFocus={() => { setFieldTouched('address') }}
+                      onBlur={() => { setFieldTouched('address', '') }}
+                      value={values.address}
+                      onChangeText={handleChange('address')}
+                      autoCapitalize="words"
+                      autoCorrect={false}
+                      multiline={true}
+                      numberOfLines={3}
+                      style={{ flex: 1 }}
+                    />
+                  </View>
+                  {touched.address && errors.address && (
+                    <Text style={styles.errorMessage}>{errors.address}</Text>
                   )}
                 </View>
                 <Button title={"S I G N U P"} onPress={isValid ? handleSubmit : inValidForm} isValid={isValid} />
