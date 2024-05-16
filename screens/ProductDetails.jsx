@@ -10,7 +10,7 @@ const ProductDetails = ({ route, navigation }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`http://192.168.100.158:8080/api/products/single/${productId}`)
+        fetch(`http://192.168.1.103:8080/api/products/single/${productId}`)
             .then(response => response.json())
             .then(data => {
                 setProduct(data);
@@ -53,7 +53,7 @@ const ProductDetails = ({ route, navigation }) => {
                     <View style={styles.titleRow}>
                         <Text style={styles.title}>{product.name}</Text> {/* Use Text component here */}
                         <View style={styles.priceWrapper}>
-                            <Text style={styles.price}>{product.price_per_unit} DH</Text> {/* Use Text component here */}
+                            <Text style={styles.price}>{product.price_per_unit} USD</Text> {/* Use Text component here */}
                         </View>
                     </View>
             </View>

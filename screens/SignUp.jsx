@@ -31,7 +31,7 @@ const SignupPage = ({ navigation }) => {
   const signUp = async (values) => {
     try {
       // Call your API to register user
-      const response = await fetch('http://192.168.100.158:8080/api/suppliers/create', {
+      const response = await fetch('http://192.168.1.103:8080/api/suppliers/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

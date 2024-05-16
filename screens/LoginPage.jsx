@@ -23,7 +23,7 @@ const LoginPage = ({ navigation }) => {
   const login = async (values) => {
     try {
       // Call your API to authenticate user
-      const response = await fetch('http://192.168.100.158:8080/api/suppliers/login', {
+      const response = await fetch('http://192.168.1.103:8080/api/suppliers/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

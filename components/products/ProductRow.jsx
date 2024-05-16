@@ -9,7 +9,7 @@ const ProductRow = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://192.168.100.158:8080/api/products/all")
+        fetch("http://192.168.1.103:8080/api/products/all")
             .then((response) => response.json())
             .then((data) => {
                 setProducts(data);

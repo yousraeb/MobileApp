@@ -5,8 +5,7 @@ import {COLORS , SIZES} from '../constants/index'
 const styles = StyleSheet.create({
     containerr:{
         flex: 1,
-        backgroundColor: COLORS.lightWhite
-
+        backgroundColor: COLORS.lightWhite,
     },
     wrapper:{
         flex: 1,
@@ -23,7 +22,6 @@ const styles = StyleSheet.create({
         borderRadius : SIZES.large,
         top: SIZES.large,
         zIndex: 999
-
     },
     heading:{
         fontFamily: "semibold",
@@ -38,7 +36,7 @@ const styles = StyleSheet.create({
             marginStart: 3,
             borderRadius: SIZES.medium,
             backgroundColor: COLORS.secondary,
-            marginTop: 60,
+            marginTop: 30,
             marginStart: 9
             
             

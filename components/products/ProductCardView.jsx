@@ -20,7 +20,7 @@ const ProductCardView = ({ product }) => {
                     <Text style={styles.supplier} numberOfLines={1}>
                         {product.supplierName}
                     </Text>
-                    <Text style={styles.price}>{product.price_per_unit}DH</Text>
+                    <Text style={styles.price}>{product.price_per_unit} USD</Text>
                 </View>
                 <TouchableOpacity style={styles.addBtn}>
                     <Ionicons name="add-circle" size={35} color={COLORS.primary} />

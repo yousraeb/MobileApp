@@ -12,15 +12,13 @@ const Search =() => {
     return (
        <SafeAreaView>
           <View style={styles.searchContainer}>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
                 <Ionicons
                  name="camera-outline" 
                   size={SIZES.xLarge} 
                   style={styles.searchIcon}
                   />
-        
-                
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <View style={styles.searchWrapper}>
                 <TextInput
                 style={styles.searchInput}
