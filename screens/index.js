@@ -5,6 +5,7 @@ import Cart from "./cart";
 import ProductDetails from "./ProductDetails";
 import NewRivals from "./NewRivals";
 import LoginPage from "./LoginPage";
+import SignUp from "./SignUp";
 
 
 export {
@@ -14,5 +15,6 @@ export {
     Cart,
     ProductDetails,
     NewRivals,
-    LoginPage
+    LoginPage,
+    SignUp
 }

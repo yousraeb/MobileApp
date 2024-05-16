@@ -1,4 +1,4 @@
-import { View , Text, ScrollView, TouchableOpacity, Image,TextInput } from "react-native";
+import { View , Text, ScrollView, TouchableOpacity, Image,TextInput, Alert } from "react-native";
 import React , {useState} from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackBtn, Button } from "../components";
@@ -21,6 +21,25 @@ const LoginPage =({navigation}) => {
     const [loader, setLoader]= useState(false);
     const [responseDta , setResponseData]= useState(null);
     const [obsecureText, setObsecureText]= useState(false);
+
+
+    const inValidForm = () =>{
+        Alert.alert(
+            "Invalid Form ",
+            "Please provide all required fields",
+            [
+                {
+                    text :"Cancel", onPress : ()=> {}
+                },
+
+                {
+                    text :"Continue", onPress : ()=> {}
+                },
+                {defaultIndex : 1}
+            ]
+        )
+
+    }
    
     return (
     <ScrollView>
@@ -51,7 +70,8 @@ const LoginPage =({navigation}) => {
                             <TextInput placeholder="Enter email"
                             onFocus={()=>{setFieldTouched('email')}}
                             onBlur={()=>{setFieldTouched('email','')}}
-                            value="email"
+                            value={values.email}
+                            onChangeText={handleChange('email')}
                             autoCapitalize="none"
                             autoCorrect={false}
                             style={{flex : 1 }}
@@ -62,26 +82,44 @@ const LoginPage =({navigation}) => {
                         <Text style={styles.errorMessage}>(errors.email)</Text>
                     )}
                     </View>
+                    <View style={styles.wrapper}>
+                        <Text style={styles.label}>Password</Text>
+                        <View style={styles.inputWrapper(touched.password ? COLORS.secondary:COLORS.offwhite)}>
+                            <MaterialCommunityIcons
+                            name='lock-outline'
+                            size={20}
+                            color={COLORS.gray}
+                            style={styles.iconStyle}
+                    />
+                    <TextInput placeholder="Password"
+                            secureTextEntry={obsecureText}
+                            onFocus={()=>{setFieldTouched('password')}}
+                            onBlur={()=>{setFieldTouched('password','')}}
+                            value={values.password}
+                            onChangeText={handleChange('password')}
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            style={{flex : 1 }}
+                            />
+                            <TouchableOpacity onPress={()=>{setObsecureText(!obsecureText)}}>
+                                <MaterialCommunityIcons
+                                name={obsecureText ? "eye-outline" : "eye-off-outline"}
+                                size={18}/>
 
+                            </TouchableOpacity>
+                        </View>
 
+                        {touched.password && errors.password &&(
+                        <Text style={styles.errorMessage}>(errors.password)</Text>
+                    )}
+                    </View>
+                <Button title={"L O G I N"} onPress={isValid ? handleSubmit: inValidForm } isValid={isValid}/>
 
-
-                <Button title={"L O G I N"} onPress={()=>{}}/>
-                
-
-
-
-
+                    <Text style={styles.registration} onPress={()=>{navigation.navigate('SignUp')}}> Register</Text>
 
                 </View>
-     )}          
-                    
-                
+                  )}                     
                 </Formik>
-
-
-                
-                
             </View>
 
         </SafeAreaView>

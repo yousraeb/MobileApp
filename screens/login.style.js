@@ -43,6 +43,10 @@ errorMessage:{
     marginLeft: 5,
     fontSize: SIZES.xSmall
 },
+registration :{
+    marginTop: 20,
+    textAlign: "center"
+},
 inputWrapper:(borderColor)=>({
     borderColor: borderColor,
     backgroundColor: COLORS.lightWhite,

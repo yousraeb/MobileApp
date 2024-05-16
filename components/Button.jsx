@@ -3,9 +3,9 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../constants";
 
-const Button =({title, onPress}) => {
+const Button =({title, onPress, isValid}) => {
     return (
-       <TouchableOpacity style={styles.btnStyle}>
+       <TouchableOpacity onPress={onPress}style={styles.btnStyle(isValid == false ? COLORS.gray: COLORS.primary)}>
             <Text style={styles.btnTxt}>{title} </Text>
        </TouchableOpacity>
     )
@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         fontSize: 18
     },
-    btnStyle:{
+    btnStyle:(backgroundColor)=>({
         height: 50,
         width: '100%',
         marginVertical: 28,
-        backgroundColor: COLORS.primary,
+        backgroundColor: backgroundColor,
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 12
-    }
+    })
 })

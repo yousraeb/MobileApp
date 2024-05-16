@@ -7,8 +7,10 @@ import {AntDesign , MaterialCommunityIcons, SimpleLineIcons} from "@expo/vector-
 
 
 const Profile =({navigation}) => {
-    const [userData, setUserData] = useState(null)
-    const  [userLogin, setUserLogin] = useState(false)
+    const [userData, setUserData] = useState(null);
+    const  [userLogin, setUserLogin] = useState(false);
+
+    
 
     const Logout = () =>(
         Alert.alert(
@@ -27,7 +29,7 @@ const Profile =({navigation}) => {
         )
 
     )
-    const clearCache = () =>(
+    const clearCache = () =>{
         Alert.alert(
             "Clear Cache ",
             "Are you sure you want to delete all saved data on your device",
@@ -43,7 +45,7 @@ const Profile =({navigation}) => {
             ]
         )
 
-    )
+    }
     const deleteAccount = () =>(
         Alert.alert(
             "Delete Account ",
