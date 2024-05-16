@@ -8,7 +8,7 @@ import {AntDesign , MaterialCommunityIcons, SimpleLineIcons} from "@expo/vector-
 
 const Profile =({navigation}) => {
     const [userData, setUserData] = useState(null);
-    const  [userLogin, setUserLogin] = useState(false);
+    const  [userLogin, setUserLogin] = useState(true);
 
     
 
@@ -99,7 +99,7 @@ const Profile =({navigation}) => {
                             <View></View>
                         ):(
                         <View style={styles.menuWrapper}>
-                                <TouchableOpacity onPress={()=>{}}>
+                                <TouchableOpacity onPress={()=>navigation.navigate('Favourites') }>
                                         <View style={styles.menuItem(0.5)}>
                                             <MaterialCommunityIcons
                                              name="heart-outline"
@@ -110,7 +110,7 @@ const Profile =({navigation}) => {
                                         </View>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={()=>{}}>
+                                <TouchableOpacity onPress={()=>{navigation.navigate('Orders')}}>
                                         <View style={styles.menuItem(0.5)}>
                                             <MaterialCommunityIcons
                                              name="truck-delivery-outline"
@@ -121,7 +121,7 @@ const Profile =({navigation}) => {
                                         </View>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={()=>{}}>
+                                <TouchableOpacity onPress={()=>{navigation.navigate('Cart')}}>
                                         <View style={styles.menuItem(0.5)}>
                                             <SimpleLineIcons
                                              name="bag"
