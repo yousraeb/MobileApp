@@ -12,7 +12,7 @@ const NewRivals = ({ navigation }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://192.168.1.103:8080/api/products/all');
+        const response = await axios.get('http://192.168.56.1:8080/api/products/all');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);

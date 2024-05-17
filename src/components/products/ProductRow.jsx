@@ -1,6 +1,6 @@
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import React, { useState, useEffect } from "react";
-import { SIZES } from "../../constants";
+import { SIZES } from "../../../constants";
 import ProductCardView from "./ProductCardView";
 import styles from "./productRow.style";
 
@@ -9,7 +9,7 @@ const ProductRow = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://192.168.1.103:8080/api/products/all")
+        fetch('http://192.168.56.1:8080/api/products/all')
             .then((response) => response.json())
             .then((data) => {
                 setProducts(data);

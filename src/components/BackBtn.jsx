@@ -2,7 +2,7 @@ import { View , TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {Ionicons} from '@expo/vector-icons';
-import { COLORS, SIZES } from "../constants";
+import { COLORS, SIZES } from "../../constants";
 const BackBtn =({onPress}) => {
     return (
       <TouchableOpacity onPress={onPress} style={styles.BackBtn}>

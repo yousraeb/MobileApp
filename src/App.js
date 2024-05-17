@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
-import BottomTabNavigation from './navigation/BottomTabNavigation';
+import BottomTabNavigation from '../navigation/BottomTabNavigation';
 import { Cart, ProductDetails, NewRivals, LoginPage, SignUp, Orders, Favourites,Home } from './screens';
 
 const Stack = createNativeStackNavigator();

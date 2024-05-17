@@ -1,7 +1,7 @@
 import { View , Text, TouchableOpacity,TextInput } from "react-native";
 import React from "react";
 import styles from "./welcome.style"
-import { COLORS ,SIZES } from "../../constants";
+import { COLORS ,SIZES } from "../../../constants";
 import {Feather, Ionicons} from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 
