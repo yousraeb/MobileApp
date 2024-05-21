@@ -144,16 +144,6 @@ const Profile =({navigation}) => {
                                         </View>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={()=>{navigation.navigate('Orders')}}>
-                                        <View style={styles.menuItem(0.5)}>
-                                            <MaterialCommunityIcons
-                                             name="truck-delivery-outline"
-                                            color={COLORS.primary}
-                                            size={24}
-                                            />
-                                            <Text style={styles.menuText}>Orders</Text>
-                                        </View>
-                                </TouchableOpacity>
 
                                 <TouchableOpacity onPress={()=>{navigation.navigate('Cart')}}>
                                         <View style={styles.menuItem(0.5)}>
