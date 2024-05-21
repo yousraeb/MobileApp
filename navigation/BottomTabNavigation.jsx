@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Home, Profile, Search } from '../screens';
 import { COLORS } from '../constants';
+import AddProduct from '../screens/AddProduct';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +44,19 @@ const BottomTabNavigation = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name="search-sharp"
+              size={24}
+              color={focused ? COLORS.primary : COLORS.gray2}
+            />
+          ),
+        }} 
+      />
+      <Tab.Screen 
+        name="AddProduct" 
+        component={AddProduct} 
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='add'
               size={24}
               color={focused ? COLORS.primary : COLORS.gray2}
             />

@@ -5,8 +5,9 @@ import { BackBtn, Button } from "../components";
 import styles from "./login.style";
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import { MaterialCommunityIcons } from "@expo/vector-icons"
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS } from "../constants";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,9 +29,16 @@ const validationSchema = Yup.object().shape({
 const SignupPage = ({ navigation }) => {
   const [obsecureText, setObsecureText] = useState(true);
 
+  const storeUserInfo = async (user) => {
+    try {
+      await AsyncStorage.setItem('supplierName', JSON.stringify(user));
+    } catch (error) {
+      console.error('Error storing user information:', error);
+    }
+  };
+
   const signUp = async (values) => {
     try {
-      // Call your API to register user
       const response = await fetch('http://192.168.1.103:8080/api/suppliers/create', {
         method: 'POST',
         headers: {
@@ -49,8 +57,13 @@ const SignupPage = ({ navigation }) => {
       const data = await response.json();
       console.log(data);
 
-      // If registration is successful, navigate to login page
       if (response.ok) {
+        // Store user information
+        storeUserInfo({
+          name: values.name,
+          email: values.email,
+        });
+        // Navigate to login page
         navigation.navigate('Login');
       } else {
         Alert.alert('Error', 'Failed to register. Please try again.');
@@ -71,7 +84,7 @@ const SignupPage = ({ navigation }) => {
       ],
       { defaultIndex: 1 }
     );
-  }
+  };
 
   return (
     <ScrollView>

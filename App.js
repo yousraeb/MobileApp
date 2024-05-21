@@ -4,9 +4,10 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import BottomTabNavigation from './navigation/BottomTabNavigation';
-import { Cart, ProductDetails, NewRivals, LoginPage, SignUp, Orders, Favourites,Home } from './screens';
+import { Cart, ProductDetails, NewRivals, LoginPage, SignUp, Orders, Favourites } from './screens';
 
 const Stack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,54 +31,77 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Auth">
+        {/* Auth Stack */}
         <Stack.Screen
-          name="Login"
-          component={LoginPage}
+          name="Auth"
+          component={AuthNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Bottom Navigation"
-          component={BottomTabNavigation}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Cart"
-          component={Cart}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProductDetails"
-          component={ProductDetails}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProductList"
-          component={NewRivals}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Orders"
-          component={Orders}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Favourites"
-          component={Favourites}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{ headerShown: false }}
-        />
-          <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
 
+        {/* Main App Stack */}
+        <Stack.Screen
+          name="Main"
+          component={MainNavigator}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+// Auth Navigator
+function AuthNavigator() {
+  return (
+    <AuthStack.Navigator initialRouteName="Login">
+      <AuthStack.Screen
+        name="Login"
+        component={LoginPage}
+        options={{ headerShown: false }}
+      />
+      <AuthStack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{ headerShown: false }}
+      />
+    </AuthStack.Navigator>
+  );
+}
+
+// Main Navigator
+function MainNavigator() {
+  return (
+    <Stack.Navigator initialRouteName="BottomTabNavigation">
+      <Stack.Screen
+        name="BottomTabNavigation"
+        component={BottomTabNavigation}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Cart"
+        component={Cart}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetails"
+        component={ProductDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductList"
+        component={NewRivals}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Orders"
+        component={Orders}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Favourites"
+        component={Favourites}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
   );
 }

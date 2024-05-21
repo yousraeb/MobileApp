@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
         backgroundColor :COLORS.primary
 
     },
+    noProductsText: {
+        fontSize: 16,
+        color: 'red',
+        textAlign: 'center',
+        marginTop: 20,
+      },
     
 
 });

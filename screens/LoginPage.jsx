@@ -1,12 +1,13 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, TextInput, Alert } from "react-native";
 import React, { useState } from "react";
+import { View, Text, ScrollView, TouchableOpacity, Image, TextInput, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackBtn, Button } from "../components";
 import styles from "./login.style";
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import { MaterialCommunityIcons } from "@expo/vector-icons"
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS } from "../constants";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const validationSchema = Yup.object().shape({
   password: Yup.string()
@@ -22,7 +23,6 @@ const LoginPage = ({ navigation }) => {
 
   const login = async (values) => {
     try {
-      // Call your API to authenticate user
       const response = await fetch('http://192.168.1.103:8080/api/suppliers/login', {
         method: 'POST',
         headers: {
@@ -34,10 +34,11 @@ const LoginPage = ({ navigation }) => {
       const data = await response.json();
       console.log(data);
 
-      // If user exists and authentication is successful, navigate to home page
       if (response.ok) {
-        
-        navigation.navigate('Home');
+        // Store supplier information in AsyncStorage
+        await AsyncStorage.setItem('supplier', JSON.stringify(data.supplier));
+
+        navigation.navigate('Main', { screen: 'BottomTabNavigation', params: { screen: 'Home' } });
       } else {
         Alert.alert('Error', 'Invalid credentials. Please try again.');
       }
@@ -63,7 +64,7 @@ const LoginPage = ({ navigation }) => {
     <ScrollView>
       <SafeAreaView style={{ marginHorizontal: 20 }}>
         <View>
-          <BackBtn onPress={() => navigation.goBack()} />
+          {/* <BackBtn onPress={() => navigation.goBack()} /> */}
           <Image
             source={require('../assets/images/bk.png')}
             style={styles.cover}

@@ -8,12 +8,10 @@ import LoginPage from "./LoginPage";
 import SignUp from "./SignUp";
 import Orders from "./Orders"
 import Favourites from "./Favourites";
-import BottomTabNavigation from "../navigation/BottomTabNavigation";
 
 
 export {
     Home,
-    BottomTabNavigation,
     Search,
     Profile,
     Cart,

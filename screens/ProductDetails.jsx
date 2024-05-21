@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, Image, ActivityIndicator } from "react-native";
-import { Ionicons, MaterialCommunityIcons, Fontisto } from '@expo/vector-icons';
+import { Ionicons, Fontisto } from '@expo/vector-icons';
 import styles from "./productDetails.style";
-import { COLORS, SIZES } from "../constants";
+import { COLORS } from "../constants";
 
 const ProductDetails = ({ route, navigation }) => {
     const { productId } = route.params;
@@ -35,7 +35,7 @@ const ProductDetails = ({ route, navigation }) => {
             {/* Header */}
             <View style={styles.upperRow}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Ionicons name="chevron-back-circle" size={30} />
+                    <Ionicons name='chevron-back-circle' size={30}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {}}>
                     <Ionicons name="heart" size={30} color={COLORS.primary} />
@@ -50,31 +50,30 @@ const ProductDetails = ({ route, navigation }) => {
 
             {/* Product Details */}
             <View style={styles.details}>
-                    <View style={styles.titleRow}>
-                        <Text style={styles.title}>{product.name}</Text> {/* Use Text component here */}
-                        <View style={styles.priceWrapper}>
-                            <Text style={styles.price}>{product.price_per_unit} USD</Text> {/* Use Text component here */}
-                        </View>
+                <View style={styles.titleRow}>
+                    <Text style={styles.title}>{product.name}</Text>
+                    <View style={styles.priceWrapper}>
+                        <Text style={styles.price}>{product.price_per_unit} USD</Text>
                     </View>
-            </View>
-
-                {/* Description */}
-                <View style={styles.descriptionWrapper}>
-                    <Text style={styles.description}>Description</Text>
-                    <Text style={styles.descText}>{product.description}</Text>
-                </View>
-
-                {/* Action Buttons */}
-                <View style={styles.cartRow}>
-                    <TouchableOpacity onPress={() => {}} style={styles.cartBtn}>
-                        <Text style={styles.cartTitle}>BUY NOW</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {}} style={styles.addCart}>
-                        <Fontisto name="shopping-bag" size={22} color={COLORS.lightWhite} />
-                    </TouchableOpacity>
                 </View>
             </View>
-       
+
+            {/* Description */}
+            <View style={styles.descriptionWrapper}>
+                <Text style={styles.description}>Description</Text>
+                <Text style={styles.descText}>{product.description}</Text>
+            </View>
+
+            {/* Action Buttons */}
+            <View style={styles.cartRow}>
+                <TouchableOpacity onPress={() => {}} style={styles.cartBtn}>
+                    <Text style={styles.cartTitle}>BUY NOW</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => {}} style={styles.addCart}>
+                    <Fontisto name="shopping-bag" size={22} color={COLORS.lightWhite} />
+                </TouchableOpacity>
+            </View>
+        </View>
     );
 };
 
