@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, TextInput, TouchableOpacity, View, Text, Alert } from "react-native";
 import { Picker } from '@react-native-picker/picker';
-import { Ionicons } from '@expo/vector-icons'; // Assuming you're using Expo for icons
+import { Ionicons } from '@expo/vector-icons'; 
 import { COLORS } from "../constants";
 import styles from './AddProduct.style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -20,7 +20,7 @@ const AddProduct = ({ navigation }) => {
             const userInfo = await getUserInfo();
             if (userInfo && userInfo.name) {
                 setSupplierName(userInfo.name);
-                console.log('Supplier Name:', userInfo.name); // Add this line to verify supplier name
+                console.log('Supplier Name:', userInfo.name); 
             } else {
                 console.log('User info or user name is null');
             }

@@ -156,27 +156,16 @@ const Profile =({navigation}) => {
                                         </View>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={()=>clearCache()}>
+                                <TouchableOpacity onPress={()=>{navigation.navigate('AddProduct')}}>
                                         <View style={styles.menuItem(0.5)}>
                                             <MaterialCommunityIcons
-                                             name="cached"
+                                             name="plus"
                                             color={COLORS.primary}
                                             size={24}
                                             />
-                                            <Text style={styles.menuText}>Clear cache</Text>
+                                            <Text style={styles.menuText}>New Product</Text>
                                         </View>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={()=>deleteAccount()}>
-                                        <View style={styles.menuItem(0.5)}>
-                                            <AntDesign
-                                             name="deleteuser"
-                                            color={COLORS.primary}
-                                            size={24}
-                                            />
-                                            <Text style={styles.menuText}>Delete Account</Text>
-                                        </View>
-                                </TouchableOpacity>
-
                                 <TouchableOpacity onPress={handleLogout}>
                                         <View style={styles.menuItem(0.5)}>
                                             <AntDesign
@@ -187,11 +176,6 @@ const Profile =({navigation}) => {
                                             <Text style={styles.menuText}>Logout</Text>
                                         </View>
                                 </TouchableOpacity>
-
-
-
-
-
                         </View>
                         )}
                     

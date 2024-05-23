@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { Home, Profile, Search } from '../screens';
+import { Favourites, Home, Profile, Search } from '../screens';
 import { COLORS } from '../constants';
 import AddProduct from '../screens/AddProduct';
 
@@ -56,7 +56,20 @@ const BottomTabNavigation = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name='add'
+              name='add-circle'
+              size={24}
+              color={focused ? COLORS.primary : COLORS.gray2}
+            />
+          ),
+        }} 
+      />
+      <Tab.Screen 
+        name="Favourites" 
+        component={Favourites} 
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name='heart'
               size={24}
               color={focused ? COLORS.primary : COLORS.gray2}
             />

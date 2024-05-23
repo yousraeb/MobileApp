@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, Fontisto } from '@expo/vector-icons';
@@ -7,8 +7,10 @@ import { Welcome } from '../components';
 import Carousel from '../components/home/Carousel';
 import Headings from '../components/home/Headings';
 import ProductRow from '../components/products/ProductRow';
+import { totalItemsInCart } from '../screens/cart';
 
-const Home = () => {
+const Home = ({ navigation }) => {
+
   return (
     <SafeAreaView>
       <View style={styles.appBarWrapper}>
@@ -17,9 +19,9 @@ const Home = () => {
           <Text style={styles.location}>Morocco</Text>
           <View style={{ alignItems: 'flex-end' }}>
             <View style={styles.cartCount}>
-              <Text style={styles.cartNumber}>8</Text>
+              <Text style={styles.cartNumber}>{totalItemsInCart}</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
               <Fontisto name="shopping-bag" size={24} />
             </TouchableOpacity>
           </View>

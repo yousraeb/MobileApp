@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { View, Text, TouchableOpacity, Image, SafeAreaView, FlatList } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
@@ -11,45 +11,43 @@ const Favourites = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState(null);
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-        const userInfo = await getUserInfo();
-        if (userInfo && userInfo.name) {
-            setUserName(userInfo.name);
-            console.log('Supplier Name:', userInfo.name);
-        } else {
-            console.log('User info or user name is null');
-        }
-    };
-
-    fetchUserInfo();
+  // Function to fetch user info from AsyncStorage
+  const fetchUserInfo = useCallback(async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('supplier');
+      const userInfo = jsonValue != null ? JSON.parse(jsonValue) : null;
+      if (userInfo && userInfo.name) {
+        setUserName(userInfo.name);
+        console.log('Supplier Name:', userInfo.name);
+      } else {
+        console.log('User info or user name is null');
+      }
+    } catch (error) {
+      console.error('Error retrieving user information:', error);
+    }
   }, []);
 
-  useEffect(() => {
+  // Function to fetch products based on user name
+  const fetchProducts = useCallback(async () => {
     if (userName) {
-      const fetchProducts = async () => {
-        try {
-          const response = await axios.get(`http://192.168.1.103:8080/api/suppliers/favorites/${userName}`);
-          setProducts(response.data);
-        } catch (error) {
-          console.error('Error fetching products:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchProducts();
+      try {
+        const response = await axios.get(`http://192.168.1.103:8080/api/suppliers/favorites/${userName}`);
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
     }
   }, [userName]);
 
-  const getUserInfo = async () => {
-    try {
-        const jsonValue = await AsyncStorage.getItem('supplier');
-        return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (error) {
-        console.error('Error retrieving user information:', error);
-    }
-  };
+  useEffect(() => {
+    fetchUserInfo();
+  }, [fetchUserInfo]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const renderItem = ({ item }) => (
     <TouchableOpacity>
@@ -62,9 +60,6 @@ const Favourites = ({ navigation }) => {
           <Text style={styles.supplier} numberOfLines={1}>{item.supplierName}</Text>
           <Text style={styles.price}>{item.price_per_unit} USD</Text>
         </View>
-        <TouchableOpacity style={styles.addBtn}>
-          <Ionicons name="add-circle" size={35} color={COLORS.primary} />
-        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
