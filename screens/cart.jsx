@@ -61,10 +61,10 @@ const Cart = ({ navigation }) => {
                     <View key={index} style={styles.cartItem}>
                         <Image source={{ uri: item.img }} style={styles.itemImage} />
                         <View style={styles.itemDetails}>
-                            <Text style={styles.itemName}>{String(item.name)}</Text>
+                            <Text style={styles.itemName}>{String(item.productName)}</Text>
                             <Text style={styles.itemPrice}>{item.price_per_unit} USD</Text>
                             <Text style={styles.itemQuantity}>Quantity: {item.quantity}</Text>
-                            <Text style={styles.itemCategory}>Category: {String(item.categoryName)}</Text>
+                            <Text style={styles.itemCategory}>Supplier Name: {String(item.supplierName)}</Text>
                         </View>
 
                     </View>

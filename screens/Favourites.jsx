@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, Text, TouchableOpacity, Image, SafeAreaView, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, Image, SafeAreaView, FlatList, RefreshControl } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import styles from "./newRivals.style";
@@ -10,6 +10,7 @@ const Favourites = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState(null);
+  const [refreshing, setRefreshing] = useState(false);
 
   // Function to fetch user info from AsyncStorage
   const fetchUserInfo = useCallback(async () => {
@@ -37,6 +38,7 @@ const Favourites = ({ navigation }) => {
         console.error('Error fetching products:', error);
       } finally {
         setLoading(false);
+        setRefreshing(false); // Reset refreshing state
       }
     }
   }, [userName]);
@@ -47,6 +49,11 @@ const Favourites = ({ navigation }) => {
 
   useEffect(() => {
     fetchProducts();
+  }, [fetchProducts]);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true); // Set refreshing state to true
+    fetchProducts(); // Fetch products again
   }, [fetchProducts]);
 
   const renderItem = ({ item }) => (
@@ -94,6 +101,12 @@ const Favourites = ({ navigation }) => {
             keyExtractor={(item) => item.id.toString()}
             numColumns={2}
             contentContainerStyle={styles.listContainer}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+              />
+            }
         />
       </View>
     </SafeAreaView>
